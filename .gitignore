@@ -27,3 +27,7 @@
 *.exe
 *.out
 *.app
+
+# IDEA Project
+
+.idea
