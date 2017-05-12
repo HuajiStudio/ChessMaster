@@ -1,0 +1,3 @@
+[submodle "jni.hpp"]
+	path = jni.hpp
+	url = https://github.com/mapbox/jni.hpp.git
