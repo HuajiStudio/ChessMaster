@@ -26,7 +26,7 @@ public class BoardReader {
 					board.chessObjects.put(chessObject.pos, chessObject);
 				return board;
 			} catch (IOException e) {
-				ChessMaster.LOGGER.error(e);
+				ChessMaster.LOGGER.error("Cannot read board!", e);
 			}
 		}
 		try {
@@ -36,7 +36,7 @@ public class BoardReader {
 				board.chessObjects.put(chessObject.pos, chessObject);
 			return board;
 		} catch (IOException e) {
-			ChessMaster.LOGGER.error(e);
+			ChessMaster.LOGGER.error("Cannot read board!", e);
 		}
 		return null;
 	}

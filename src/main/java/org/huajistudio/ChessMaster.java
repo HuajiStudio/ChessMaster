@@ -1,8 +1,8 @@
 package org.huajistudio;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ChessMaster {
-	public static final Logger LOGGER = LogManager.getLogger("ChessMaster");
+	public static final Logger LOGGER = LoggerFactory.getLogger("ChessMaster");
 }
