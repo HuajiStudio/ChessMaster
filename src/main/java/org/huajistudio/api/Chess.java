@@ -2,12 +2,13 @@ package org.huajistudio.api;
 
 import org.huajistudio.api.math.ChessVector;
 import org.huajistudio.api.math.Direction;
+import ro.fortsoft.pf4j.ExtensionPoint;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
-public interface Chess {
+public interface Chess extends ExtensionPoint {
 	// TODO generate moves
 	// FIXME couldn't be successfully converted by Gson
 	Chess KING =
