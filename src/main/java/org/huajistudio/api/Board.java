@@ -1,4 +1,4 @@
-package org.huajistudio.jni;
+package org.huajistudio.api;
 
 public class Board {
 	ChessObject[][] grid;

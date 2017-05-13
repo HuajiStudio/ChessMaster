@@ -1,4 +1,4 @@
-package org.huajistudio.jni;
+package org.huajistudio.api;
 
 public class Move {
 	public Board.BoardPos origin;
