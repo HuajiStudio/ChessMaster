@@ -3,7 +3,7 @@ package org.huajistudio.api;
 import java.util.Arrays;
 
 public class BoardObject {
-	private ChessObject[] chessObjects;
+	private ChessObject[] chessObjects = {};
 
 	public ChessObject[] getChessObjects() {
 		return chessObjects;

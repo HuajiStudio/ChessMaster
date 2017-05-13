@@ -1,15 +1,17 @@
 package org.huajistudio.utils;
 
-import org.huajistudio.api.Board;
-import org.huajistudio.api.Chess;
-import org.huajistudio.api.ChessObject;
+import org.huajistudio.api.*;
 
-class ChessHelper {
+public interface ChessHelper {
 
-	public static final boolean BLACK = true;
-	public static final boolean WHITE = false;
+	boolean BLACK = true;
+	boolean WHITE = false;
 
-    public static boolean CanMoveTo(ChessObject chess, Board.BoardPos pos, Board board) {
+	static boolean canMove(Move move) {
+		return canMoveTo(move.turned, move.end, move.board);
+	}
+
+    static boolean canMoveTo(ChessObject chess, BoardPos pos, Board board) {
     	ChessObject chessObjectAtDestination = board.chessObjects.get(pos);
     	if (chessObjectAtDestination != null)
 		{

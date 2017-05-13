@@ -1,5 +1,8 @@
 package org.huajistudio.api;
 
+import io.reactivex.Observable;
+import org.huajistudio.utils.ChessHelper;
+
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -7,22 +10,21 @@ import java.util.Map;
 public class Board implements Iterable<ChessObject> {
 	public Map<BoardPos, ChessObject> chessObjects;
 
-	public class BoardPos {
-		public int x, y;
-
-		@Override
-		public boolean equals(Object obj) {
-			return obj instanceof BoardPos && ((BoardPos) obj).x == x && ((BoardPos) obj).y == y;
-		}
-
-		@Override
-		public String toString() {
-			return "BoardPos{x=" + x + ", y=" + y + "}";
-		}
-	}
-
 	public Board() {
 		this.chessObjects = new HashMap<>();
+	}
+
+	public void putChessObject(ChessObject object) {
+		chessObjects.put(object.pos, object);
+	}
+
+	public void move(ChessObject chess, BoardPos dest) {
+		Observable.just(new Move(chess.pos, dest, chess, this)).filter(ChessHelper::canMove).subscribe(move -> {
+			ChessObject chess1 = chessObjects.get(move.origin);
+			chess1.pos = move.end;
+			chessObjects.put(move.end, chess1);
+			chessObjects.remove(move.origin);
+		}).dispose();
 	}
 
 	@Override
