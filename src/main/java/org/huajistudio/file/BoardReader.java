@@ -31,7 +31,7 @@ public class BoardReader {
 			ChessMaster.LOGGER.error("Cannot read board!", e);
 		}
 		Board board = new Board();
-		Arrays.stream(boardObject.getChessObjects()).forEach(board::putChessObject);
+		Arrays.stream(boardObject.getChessObjects()).forEach(board::putChess);
 		return board;
 	}
 }

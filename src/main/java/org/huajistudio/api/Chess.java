@@ -1,46 +1,45 @@
 package org.huajistudio.api;
 
-import java.util.Collection;
+import org.huajistudio.api.math.ChessVector;
+import org.huajistudio.api.math.Direction;
 
-public abstract class Chess {
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+public interface Chess {
 	// TODO generate moves
 	// FIXME couldn't be successfully converted by Gson
-    public static final Chess KING = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
-    public static final Chess QUEEN = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
-    public static final Chess POPE = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
-    public static final Chess KNIGHT = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
-    public static final Chess CASTLE = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
-    public static final Chess PAWN = new Chess() {
-	    @Override
-	    public Collection<BoardPos> getMoves() {
-		    return null;
-	    }
-    };
+	Chess KING =
+		() -> Arrays.asList(
+			new ChessVector(Direction.UP, 1),
+			new ChessVector(Direction.LEFT, 1),
+			new ChessVector(Direction.RIGHT, 1),
+			new ChessVector(Direction.DOWN, 1),
+			new ChessVector(Direction.UP_LEFT, 1),
+			new ChessVector(Direction.UP_RIGHT, 1),
+			new ChessVector(Direction.DOWN_LEFT, 1),
+			new ChessVector(Direction.DOWN_RIGHT, 1)
+		);
+    Chess QUEEN = () -> Arrays.asList(
+		new ChessVector(Direction.UP, Integer.MAX_VALUE),
+		new ChessVector(Direction.LEFT, Integer.MAX_VALUE),
+		new ChessVector(Direction.RIGHT, Integer.MAX_VALUE),
+		new ChessVector(Direction.DOWN, Integer.MAX_VALUE),
+		new ChessVector(Direction.UP_LEFT, Integer.MAX_VALUE),
+		new ChessVector(Direction.UP_RIGHT, Integer.MAX_VALUE),
+		new ChessVector(Direction.DOWN_LEFT, Integer.MAX_VALUE),
+		new ChessVector(Direction.DOWN_RIGHT, Integer.MAX_VALUE)
+	);
+    Chess POPE = Collections::emptyList;
+    Chess KNIGHT = Collections::emptyList;
+    Chess CASTLE = () -> Arrays.asList(
+		new ChessVector(Direction.UP, Integer.MAX_VALUE),
+		new ChessVector(Direction.LEFT, Integer.MAX_VALUE),
+		new ChessVector(Direction.RIGHT, Integer.MAX_VALUE),
+		new ChessVector(Direction.DOWN, Integer.MAX_VALUE)
+	);
+    Chess PAWN = Collections::emptyList;
 
-    public abstract Collection<BoardPos> getMoves();
+    Collection<ChessVector> getMovableVectors();
 }

@@ -1,6 +1,7 @@
 package org.huajistudio.utils;
 
 import org.huajistudio.api.*;
+import org.huajistudio.api.math.ChessVector;
 
 public interface ChessHelper {
 
@@ -12,31 +13,48 @@ public interface ChessHelper {
 	}
 
     static boolean canMoveTo(ChessObject chess, BoardPos pos, Board board) {
-    	ChessObject chessObjectAtDestination = board.chessObjects.get(pos);
+    	ChessObject chessObjectAtDestination = board.getChess(pos);
     	if (chessObjectAtDestination != null)
-		{
 			if (chessObjectAtDestination.side == chess.side)
-			{
 				return false;
+
+		for (ChessVector vector : chess.type.getMovableVectors()) {
+    		switch (vector.getDirection()) {
+				case UP:
+					if (pos.getY() - chess.pos.getY() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case DOWN:
+					if (chess.pos.getY() - pos.getY() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case LEFT:
+					if (chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case RIGHT:
+					if (pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case UP_LEFT:
+					if (pos.getY() - chess.pos.getY() != vector.getSize() || chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case UP_RIGHT:
+					if (pos.getY() - chess.pos.getY() != vector.getSize() || pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case DOWN_LEFT:
+					if (chess.pos.getY() - pos.getY() != vector.getSize() || chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
+				case DOWN_RIGHT:
+					if (chess.pos.getY() - pos.getY() != vector.getSize() || pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
+						return false;
+					break;
 			}
 		}
 
-
-		if (chess.type == Chess.PAWN &&
-			chess.side==BLACK &&
-			chess.pos.y==1 &&
-			pos.x==chess.pos.x&&pos.y==3)
-		{
-			return true;
-		}
-		if (chess.type == Chess.PAWN &&
-			chess.side==WHITE &&
-			chess.pos.y==6 &&
-			pos.x==chess.pos.x&&pos.y==4)
-		{
-			return true;
-		}
-
-    	return chess.type.getMoves().contains(pos);
+		return true;
     }
 }

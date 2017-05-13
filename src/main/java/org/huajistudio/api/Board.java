@@ -8,13 +8,17 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Board implements Iterable<ChessObject> {
-	public Map<BoardPos, ChessObject> chessObjects;
+	private Map<BoardPos, ChessObject> chessObjects;
 
 	public Board() {
 		this.chessObjects = new HashMap<>();
 	}
 
-	public void putChessObject(ChessObject object) {
+	public ChessObject getChess(BoardPos pos) {
+		return chessObjects.get(pos);
+	}
+
+	public void putChess(ChessObject object) {
 		chessObjects.put(object.pos, object);
 	}
 
