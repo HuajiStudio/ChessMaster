@@ -22,13 +22,13 @@ public class BoardReader {
 			try {
 				boardObject = gson.fromJson(new InputStreamReader(new GZIPInputStream(new FileInputStream(file)), StandardCharsets.UTF_8), BoardObject.class);
 			} catch (IOException e) {
-				ChessMaster.LOGGER.error("Cannot read gzipped board!", e);
+				ChessMaster.getLogger().error("Cannot read gzipped board!", e);
 			}
 		}
 		try {
 			boardObject = gson.fromJson(FileUtils.readFileToString(file, StandardCharsets.UTF_8), BoardObject.class);
 		} catch (IOException e) {
-			ChessMaster.LOGGER.error("Cannot read board!", e);
+			ChessMaster.getLogger().error("Cannot read board!", e);
 		}
 		Board board = new Board();
 		Arrays.stream(boardObject.getChessObjects()).forEach(board::putChess);
