@@ -32,8 +32,22 @@ public interface Chess extends ExtensionPoint {
 		new ChessVector(Direction.DOWN_LEFT, Integer.MAX_VALUE),
 		new ChessVector(Direction.DOWN_RIGHT, Integer.MAX_VALUE)
 	);
-    Chess POPE = Collections::emptyList;
-    Chess KNIGHT = Collections::emptyList;
+    Chess POPE = () -> Arrays.asList(
+    	new ChessVector(Direction.UP_LEFT, Integer.MAX_VALUE),
+	    new ChessVector(Direction.UP_RIGHT, Integer.MAX_VALUE),
+	    new ChessVector(Direction.DOWN_LEFT, Integer.MAX_VALUE),
+	    new ChessVector(Direction.DOWN_RIGHT, Integer.MAX_VALUE)
+    );
+    Chess KNIGHT = () -> Arrays.asList(
+    	new ChessVector(Direction.KNIGHT_1, 1),
+	    new ChessVector(Direction.KNIGHT_2, 1),
+	    new ChessVector(Direction.KNIGHT_3, 1),
+	    new ChessVector(Direction.KNIGHT_4, 1),
+	    new ChessVector(Direction.KNIGHT_5, 1),
+	    new ChessVector(Direction.KNIGHT_6, 1),
+	    new ChessVector(Direction.KNIGHT_7, 1),
+	    new ChessVector(Direction.KNIGHT_8, 1)
+    );
     Chess CASTLE = () -> Arrays.asList(
 		new ChessVector(Direction.UP, Integer.MAX_VALUE),
 		new ChessVector(Direction.LEFT, Integer.MAX_VALUE),

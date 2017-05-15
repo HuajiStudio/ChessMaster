@@ -2,6 +2,10 @@ package org.huajistudio.utils;
 
 import org.huajistudio.api.*;
 import org.huajistudio.api.math.ChessVector;
+import org.huajistudio.api.math.Direction;
+import org.omg.CORBA.Object;
+
+import java.util.Objects;
 
 public interface ChessHelper {
 
@@ -18,43 +22,35 @@ public interface ChessHelper {
 			if (chessObjectAtDestination.side == chess.side)
 				return false;
 
-		for (ChessVector vector : chess.type.getMovableVectors()) {
-    		switch (vector.getDirection()) {
-				case UP:
-					if (pos.getY() - chess.pos.getY() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case DOWN:
-					if (chess.pos.getY() - pos.getY() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case LEFT:
-					if (chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case RIGHT:
-					if (pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case UP_LEFT:
-					if (pos.getY() - chess.pos.getY() != vector.getSize() || chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case UP_RIGHT:
-					if (pos.getY() - chess.pos.getY() != vector.getSize() || pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case DOWN_LEFT:
-					if (chess.pos.getY() - pos.getY() != vector.getSize() || chess.pos.getX() - pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-				case DOWN_RIGHT:
-					if (chess.pos.getY() - pos.getY() != vector.getSize() || pos.getX() - chess.pos.getX() != vector.getSize() || vector.getSize() != Integer.MAX_VALUE)
-						return false;
-					break;
-			}
-		}
+		int deltaX = pos.x - chess.pos.x;
+	    int deltaY = pos.y - chess.pos.y;
 
-		return true;
+	    for (ChessVector vector : chess.type.getMovableVectors()) {
+	    	if (deltaX != 0 && vector.getDirection().getOffsetX() != 0) {
+			    if (deltaX % vector.getDirection().getOffsetX() != 0)
+				    continue;
+			    int s = deltaX / vector.getDirection().getOffsetX();
+			    if (s * deltaY == vector.getDirection().getOffsetY())
+				    return true;
+		    } else if (deltaY != 0 && vector.getDirection().getOffsetY() != 0) {
+		    	if (deltaY % vector.getDirection().getOffsetY() != 0)
+		    		continue;
+			    int s = deltaY / vector.getDirection().getOffsetY();
+			    if (s * deltaX == vector.getDirection().getOffsetX())
+			    	return true;
+		    }
+	    }
+
+	    if (chess.type == Chess.PAWN)
+	    	if (chess.side == BLACK) if (chess.pos.y == 1)
+			    return chess.pos.move(0, 1).equals(pos) || chess.pos.move(0, 2).equals(pos);
+		    else
+			    return chess.pos.move(0, 1).equals(pos);
+		    else if (chess.pos.y == 6)
+			    return chess.pos.move(0, -1).equals(pos) || chess.pos.move(0, -2).equals(pos);
+		    else
+			    return chess.pos.move(0, -1).equals(pos);
+
+		return false;
     }
 }

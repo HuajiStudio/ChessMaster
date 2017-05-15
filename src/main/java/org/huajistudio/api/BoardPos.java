@@ -1,9 +1,16 @@
 package org.huajistudio.api;
 
+import org.huajistudio.api.math.Direction;
+
 public class BoardPos {
     public int x, y;
 
-    @Override
+	public BoardPos(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+
+	@Override
     public boolean equals(Object obj) {
         return obj instanceof BoardPos && ((BoardPos) obj).x == x && ((BoardPos) obj).y == y;
     }
@@ -11,6 +18,23 @@ public class BoardPos {
     @Override
     public String toString() {
         return "BoardPos{x=" + x + ", y=" + y + "}";
+    }
+
+    public void moveInPlace(Direction direction) {
+    	moveInPlace(direction.getOffsetX(), direction.getOffsetY());
+    }
+
+    public void moveInPlace(int offsetX, int offsetY) {
+    	x += offsetX;
+	    y += offsetY;
+    }
+
+    public BoardPos move(Direction direction) {
+    	return move(direction.getOffsetX(), direction.getOffsetY());
+    }
+
+    public BoardPos move(int offsetX, int offsetY) {
+    	return new BoardPos(x + offsetX, y + offsetY);
     }
 
 	public int getX() {
