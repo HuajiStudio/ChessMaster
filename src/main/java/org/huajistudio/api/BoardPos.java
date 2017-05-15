@@ -1,7 +1,5 @@
 package org.huajistudio.api;
 
-import org.huajistudio.api.math.Direction;
-
 public class BoardPos {
     public int x, y;
 
@@ -19,6 +17,11 @@ public class BoardPos {
     public String toString() {
         return "BoardPos{x=" + x + ", y=" + y + "}";
     }
+
+	@Override
+	public int hashCode() {
+		return x * 8 + y;
+	}
 
     public void moveInPlace(Direction direction) {
     	moveInPlace(direction.getOffsetX(), direction.getOffsetY());
