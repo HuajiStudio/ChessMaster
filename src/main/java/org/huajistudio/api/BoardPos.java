@@ -1,5 +1,7 @@
 package org.huajistudio.api;
 
+import org.huajistudio.api.math.Direction;
+
 public class BoardPos {
     public int x, y;
 
