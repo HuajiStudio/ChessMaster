@@ -2,10 +2,6 @@ package org.huajistudio.utils;
 
 import org.huajistudio.api.*;
 import org.huajistudio.api.math.ChessVector;
-import org.huajistudio.api.math.Direction;
-import org.omg.CORBA.Object;
-
-import java.util.Objects;
 
 public interface ChessHelper {
 
@@ -22,8 +18,8 @@ public interface ChessHelper {
 			if (chessObjectAtDestination.side == chess.side)
 				return false;
 
-		int deltaX = pos.x - chess.pos.x;
-	    int deltaY = pos.y - chess.pos.y;
+		int deltaX = pos.getX() - chess.pos.getX();
+	    int deltaY = pos.getY() - chess.pos.getY();
 
 	    for (ChessVector vector : chess.type.getMovableVectors()) {
 	    	if (deltaX != 0 && vector.getDirection().getOffsetX() != 0) {
@@ -42,11 +38,11 @@ public interface ChessHelper {
 	    }
 
 	    if (chess.type == Chess.PAWN)
-	    	if (chess.side == BLACK) if (chess.pos.y == 1)
+	    	if (chess.side == BLACK) if (chess.pos.getY() == 1)
 			    return chess.pos.move(0, 1).equals(pos) || chess.pos.move(0, 2).equals(pos);
 		    else
 			    return chess.pos.move(0, 1).equals(pos);
-		    else if (chess.pos.y == 6)
+		    else if (chess.pos.getY() == 6)
 			    return chess.pos.move(0, -1).equals(pos) || chess.pos.move(0, -2).equals(pos);
 		    else
 			    return chess.pos.move(0, -1).equals(pos);
