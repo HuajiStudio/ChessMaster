@@ -6,16 +6,16 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-    jcenter()
+	jcenter()
 }
 
 dependencies {
-    compile 'org.slf4j:slf4j-api:1.7.13'
+	compile 'org.slf4j:slf4j-api:1.7.13'
 	compile 'org.slf4j:slf4j-simple:1.7.13'
-    compile 'com.google.code.gson:gson:2.8.0'
+	compile 'com.google.code.gson:gson:2.8.0'
 	compile 'commons-io:commons-io:2.5'
 	compile 'com.google.guava:guava:19.0'
 	compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 	compile 'ro.fortsoft.pf4j:pf4j:1.2.0'
-    testCompile 'junit:junit:4.12'
+	testCompile 'junit:junit:4.12'
 }

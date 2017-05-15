@@ -1,9 +1,9 @@
 package org.huajistudio.api;
 
+import com.google.common.collect.Maps;
 import io.reactivex.Observable;
 import org.huajistudio.utils.ChessHelper;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -11,7 +11,7 @@ public class Board implements Iterable<ChessObject> {
 	private Map<BoardPos, ChessObject> chessObjects;
 
 	public Board() {
-		this.chessObjects = new HashMap<>();
+		this.chessObjects = Maps.newHashMapWithExpectedSize(64);
 	}
 
 	public ChessObject getChess(BoardPos pos) {
