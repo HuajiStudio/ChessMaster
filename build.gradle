@@ -1,3 +1,5 @@
+group 'org.huajistudio'
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'

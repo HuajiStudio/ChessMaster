@@ -14,6 +14,30 @@ public class Board implements Iterable<ChessObject> {
 		this.chessObjects = Maps.newHashMapWithExpectedSize(64);
 	}
 
+	public static Board start() {
+		Board board = new Board();
+		board.putChess(new ChessObject(new BoardPos(0, 0), Chess.CASTLE, ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(1, 0), Chess.KNIGHT, ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(2, 0), Chess.POPE,   ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(3, 0), Chess.QUEEN,  ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(4, 0), Chess.KING,   ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(5, 0), Chess.POPE,   ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(6, 0), Chess.KNIGHT, ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(7, 0), Chess.CASTLE, ChessHelper.WHITE));
+		board.putChess(new ChessObject(new BoardPos(0, 7), Chess.CASTLE, ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(1, 7), Chess.KNIGHT, ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(2, 7), Chess.POPE,   ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(3, 7), Chess.KING,   ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(4, 7), Chess.QUEEN,  ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(5, 7), Chess.POPE,   ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(6, 7), Chess.KNIGHT, ChessHelper.BLACK));
+		board.putChess(new ChessObject(new BoardPos(7, 7), Chess.CASTLE, ChessHelper.BLACK));
+		for (int i = 0; i < 8; ++i) {
+			board.putChess(new ChessObject(new BoardPos(i, 1), Chess.PAWN, ChessHelper.WHITE));
+			board.putChess(new ChessObject(new BoardPos(i, 6), Chess.PAWN, ChessHelper.BLACK));
+		}
+		return board;
+	}
 	public ChessObject getChess(BoardPos pos) {
 		return chessObjects.get(pos);
 	}
