@@ -49,17 +49,17 @@ public class Board implements Iterable<ChessObject> {
 		ChessCreateEvent createEvent = new ChessCreateEvent(object);
 		ChessMaster.postEvent(createEvent);
 		if (!createEvent.isCancelled())
-			chessObjects.put(object.pos, object);
+			chessObjects.put(object.getPos(), object);
 	}
 
 	public void move(ChessObject chess, BoardPos dest) {
-		Observable.just(new Move(chess.pos, dest, chess, this)).filter(ChessHelper::canMove).filter(move -> {
+		Observable.just(new Move(chess.getPos(), dest, chess, this)).filter(ChessHelper::canMove).filter(move -> {
 			ChessMoveEvent moveEvent = new ChessMoveEvent(this, move);
 			ChessMaster.postEvent(moveEvent);
 			return !moveEvent.isCancelled();
 		}).subscribe(move -> {
 			ChessObject chess1 = chessObjects.get(move.origin);
-			chess1.pos = move.end;
+			chess1.setPos(move.end);
 			chessObjects.put(move.end, chess1);
 			chessObjects.remove(move.origin);
 		}).dispose();

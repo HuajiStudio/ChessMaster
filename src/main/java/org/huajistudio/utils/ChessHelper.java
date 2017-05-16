@@ -14,13 +14,13 @@ public interface ChessHelper {
     static boolean canMoveTo(ChessObject chess, BoardPos pos, Board board) {
     	ChessObject chessObjectAtDestination = board.getChess(pos);
     	if (chessObjectAtDestination != null)
-			if (chessObjectAtDestination.side == chess.side)
+			if (chessObjectAtDestination.getSide() == chess.getSide())
 				return false;
 
-		int deltaX = pos.getX() - chess.pos.getX();
-	    int deltaY = pos.getY() - chess.pos.getY();
+		int deltaX = pos.getX() - chess.getPos().getX();
+	    int deltaY = pos.getY() - chess.getPos().getY();
 
-	    for (ChessVector vector : chess.type.getMovableVectors()) {
+	    for (ChessVector vector : chess.getType().getMovableVectors()) {
 	    	if (deltaX != 0 && vector.getDirection().getOffsetX() != 0) {
 			    if (deltaX % vector.getDirection().getOffsetX() != 0)
 				    continue;
@@ -36,15 +36,15 @@ public interface ChessHelper {
 		    }
 	    }
 
-	    if (chess.type == Chess.PAWN)
-	    	if (chess.side == BLACK) if (chess.pos.getY() == 1)
-			    return chess.pos.move(0, 1).equals(pos) || chess.pos.move(0, 2).equals(pos);
+	    if (chess.getType() == Chess.PAWN)
+	    	if (chess.getSide() == BLACK) if (chess.getPos().getY() == 1)
+			    return chess.getPos().move(0, 1).equals(pos) || chess.getPos().move(0, 2).equals(pos);
 		    else
-			    return chess.pos.move(0, 1).equals(pos);
-		    else if (chess.pos.getY() == 6)
-			    return chess.pos.move(0, -1).equals(pos) || chess.pos.move(0, -2).equals(pos);
+			    return chess.getPos().move(0, 1).equals(pos);
+		    else if (chess.getPos().getY() == 6)
+			    return chess.getPos().move(0, -1).equals(pos) || chess.getPos().move(0, -2).equals(pos);
 		    else
-			    return chess.pos.move(0, -1).equals(pos);
+			    return chess.getPos().move(0, -1).equals(pos);
 
 		return false;
     }

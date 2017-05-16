@@ -12,6 +12,6 @@ public class BoardTest {
 		ChessObject object = new ChessObject(new BoardPos(0, 0), Chess.QUEEN, ChessHelper.WHITE);
 		board.putChess(object);
 		board.move(object, new BoardPos(1, 1));
-		Assert.assertTrue(Lists.newArrayList(board).stream().anyMatch(chess -> chess.pos.getX() == 1 && chess.pos.getY() == 1));
+		Assert.assertTrue(Lists.newArrayList(board).stream().anyMatch(chess -> chess.getPos().getX() == 1 && chess.getPos().getY() == 1));
 	}
 }
