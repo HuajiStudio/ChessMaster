@@ -13,7 +13,7 @@ public class EventBusTest {
 	@Test
 	public void testBus() {
 		EventBus bus = new EventBus();
-		bus.register(new Object(){
+		bus.register(new Object() {
 			@EventSubscriber(priority = EventSubscriber.PRIORITY_HIGHEST)
 			public void onMessage(TestEvent event) {
 				event.message = "interesting";
@@ -22,6 +22,6 @@ public class EventBusTest {
 		TestEvent event = new TestEvent();
 		event.message = "gg";
 		bus.post(event);
-		Assert.assertTrue(event.message.equals("interesting"));
+		Assert.assertEquals("interesting", event.message);
 	}
 }

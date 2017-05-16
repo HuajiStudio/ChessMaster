@@ -37,11 +37,11 @@ public interface ChessHelper {
 	    }
 
 	    if (chess.getType() == Chess.PAWN)
-	    	if (chess.getSide() == BLACK) if (chess.getPos().getY() == 1)
+	    	if (chess.getSide() == WHITE) if (!chess.isMoved())
 			    return chess.getPos().move(0, 1).equals(pos) || chess.getPos().move(0, 2).equals(pos);
 		    else
 			    return chess.getPos().move(0, 1).equals(pos);
-		    else if (chess.getPos().getY() == 6)
+		    else if (!chess.isMoved())
 			    return chess.getPos().move(0, -1).equals(pos) || chess.getPos().move(0, -2).equals(pos);
 		    else
 			    return chess.getPos().move(0, -1).equals(pos);
