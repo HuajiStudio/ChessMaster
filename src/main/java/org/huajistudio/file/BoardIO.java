@@ -6,6 +6,8 @@ import org.apache.commons.io.FileUtils;
 import org.huajistudio.ChessMaster;
 import org.huajistudio.api.Board;
 import org.huajistudio.api.config.BoardSerializer;
+import org.huajistudio.api.event.board.BoardReadEvent;
+import org.huajistudio.api.event.board.BoardWriteEvent;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -27,10 +29,18 @@ public interface BoardIO {
 		} catch (IOException e) {
 			ChessMaster.getLogger().error("Cannot read board!", e);
 		}
-		return Optional.ofNullable(board);
+		BoardReadEvent readEvent = new BoardReadEvent(board, file);
+		ChessMaster.postEvent(readEvent);
+		return Optional.ofNullable(readEvent.isCancelled() ? null : readEvent.getBoard());
 	}
 
 	static void writeBoard(File file, Board board) {
+		BoardWriteEvent writeEvent = new BoardWriteEvent(board, file);
+		ChessMaster.postEvent(writeEvent);
+		if (writeEvent.isCancelled())
+			return;
+		file = writeEvent.getBoardFile();
+		board = writeEvent.getBoard();
 		Gson gson = new GsonBuilder().registerTypeAdapter(Board.class, new BoardSerializer()).create();
 		if (file.getName().endsWith(".gz"))
 			try {

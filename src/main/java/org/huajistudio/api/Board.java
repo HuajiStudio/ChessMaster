@@ -2,6 +2,9 @@ package org.huajistudio.api;
 
 import com.google.common.collect.Maps;
 import io.reactivex.Observable;
+import org.huajistudio.ChessMaster;
+import org.huajistudio.api.event.chess.ChessCreateEvent;
+import org.huajistudio.api.event.chess.ChessMoveEvent;
 import org.huajistudio.utils.ChessHelper;
 
 import java.util.Iterator;
@@ -43,11 +46,18 @@ public class Board implements Iterable<ChessObject> {
 	}
 
 	public void putChess(ChessObject object) {
-		chessObjects.put(object.pos, object);
+		ChessCreateEvent createEvent = new ChessCreateEvent(object);
+		ChessMaster.postEvent(createEvent);
+		if (!createEvent.isCancelled())
+			chessObjects.put(object.pos, object);
 	}
 
 	public void move(ChessObject chess, BoardPos dest) {
-		Observable.just(new Move(chess.pos, dest, chess, this)).filter(ChessHelper::canMove).subscribe(move -> {
+		Observable.just(new Move(chess.pos, dest, chess, this)).filter(ChessHelper::canMove).filter(move -> {
+			ChessMoveEvent moveEvent = new ChessMoveEvent(this, move);
+			ChessMaster.postEvent(moveEvent);
+			return !moveEvent.isCancelled();
+		}).subscribe(move -> {
 			ChessObject chess1 = chessObjects.get(move.origin);
 			chess1.pos = move.end;
 			chessObjects.put(move.end, chess1);
