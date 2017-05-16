@@ -3,4 +3,4 @@
 	url = https://github.com/mapbox/jni.hpp.git
 [submodule "AsmEventBus"]
 	path = AsmEventBus
-	url = https://github.com/szszss/HuajiStudio.git
+	url = https://github.com/HuajiStudio/AsmEventBus.git
