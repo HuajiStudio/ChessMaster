@@ -4,7 +4,6 @@ import org.huajistudio.api.*;
 import org.huajistudio.api.math.ChessVector;
 
 public interface ChessHelper {
-
 	boolean BLACK = true;
 	boolean WHITE = false;
 
