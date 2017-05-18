@@ -1,6 +1,7 @@
 package org.huajistudio.chessmaster;
 
 import net.hakugyokurou.aeb.EventBus;
+import org.huajistudio.chessmaster.render.RenderManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.fortsoft.pf4j.JarPluginManager;
@@ -10,11 +11,7 @@ public class ChessMaster {
 	private static final Logger LOGGER = LoggerFactory.getLogger("ChessMaster");
 	private static final PluginManager PLUGIN_MANAGER = new JarPluginManager();
 	private static final EventBus EVENT_BUS = new EventBus("ChessMaster");
-
-	static {
-		PLUGIN_MANAGER.loadPlugins();
-		PLUGIN_MANAGER.startPlugins();
-	}
+	private static final RenderManager RENDER_MANAGER = new RenderManager();
 
 	public static Logger getLogger() {
 		return LOGGER;
@@ -30,5 +27,15 @@ public class ChessMaster {
 
 	public static void postEvent(Object event) {
 		EVENT_BUS.post(event);
+	}
+
+	public static RenderManager getRenderManager() {
+		return RENDER_MANAGER;
+	}
+
+	public static void main(String[] args) {
+		PLUGIN_MANAGER.loadPlugins();
+		PLUGIN_MANAGER.startPlugins();
+		RENDER_MANAGER.init();
 	}
 }
