@@ -3,12 +3,19 @@ group 'org.huajistudio'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
+apply plugin: 'cpp'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
 	jcenter()
+}
+
+model { 
+    components {
+        main(NativeLibrarySpec)   
+    }
 }
 
 dependencies {
@@ -19,6 +26,8 @@ dependencies {
 	compile 'com.google.guava:guava:19.0'
 	compile 'io.reactivex.rxjava2:rxjava:2.1.0'
 	compile 'ro.fortsoft.pf4j:pf4j:1.2.0'
+	compile 'net.java.dev.jna:jna:4.4.0'
+	compile 'net.java.dev.jna:jna-platform:4.4.0'
 	compile project(':AsmEventBus')
 	testCompile 'junit:junit:4.12'
 }
