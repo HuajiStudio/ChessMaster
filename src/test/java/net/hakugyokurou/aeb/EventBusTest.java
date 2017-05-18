@@ -1,7 +1,7 @@
 package net.hakugyokurou.aeb;
 
 import net.hakugyokurou.aeb.quickstart.EventSubscriber;
-import org.huajistudio.api.event.CancelableEvent;
+import org.huajistudio.chessmaster.api.event.CancelableEvent;
 import org.junit.Assert;
 import org.junit.Test;
 
