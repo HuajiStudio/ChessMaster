@@ -45,6 +45,7 @@ dependencies {
 	compile 'net.java.dev.jna:jna:4.4.0'
 	compile 'net.java.dev.jna:jna-platform:4.4.0'
 	compile 'io.advantageous.konf:konf:1.3.0.RELEASE'
+	compile 'org.javassist:javassist:3.22.0-CR1'
 	compile project(':AsmEventBus')
 	testCompile 'junit:junit:4.12'
 	

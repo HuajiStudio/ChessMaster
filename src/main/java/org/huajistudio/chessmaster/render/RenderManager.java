@@ -75,6 +75,8 @@ public class RenderManager {
 
 			bgfx_reset(width, height, reset);
 
+			bgfx_set_debug(BGFX_DEBUG_TEXT);
+
 			bgfx_set_view_clear(0,
 				BGFX_CLEAR_COLOR | BGFX_CLEAR_DEPTH,
 				0x23333333,
@@ -96,7 +98,7 @@ public class RenderManager {
 
 				double time = (now - startTime) / freq;
 
-				bgfx_set_view_rect(0, 0, 0, ChessMaster.getRenderManager().getWidth(), ChessMaster.getRenderManager().getHeight());
+				bgfx_set_view_rect(0, 0, 0, width, height);
 
 				bgfx_touch(0);
 
@@ -137,10 +139,7 @@ public class RenderManager {
 	}
 
 	private void frame(float time, float frameTime) {
-
-		bgfx_dbg_text_printf(0, 1, 0x4f, "bgfx/examples/01-cubes");
-		bgfx_dbg_text_printf(0, 2, 0x6f, "Description: Rendering simple static mesh.");
-		bgfx_dbg_text_printf(0, 3, 0x0f, String.format("Frame: %7.3f[ms]", frameTime));
+		bgfx_dbg_text_printf(0, 1, 0x0f, String.format("Frame: %7.3f[ms]", frameTime));
 	}
 
 	public void dispose() {
