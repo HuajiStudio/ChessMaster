@@ -1,7 +1,7 @@
 package org.huajistudio.chessmaster.api;
 
 import com.google.common.collect.Lists;
-import org.huajistudio.chessmaster.utils.ChessHelper;
+import org.huajistudio.chessmaster.util.ChessHelper;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package org.huajistudio.chessmaster.utils;
+package org.huajistudio.chessmaster.util;
 
 import com.google.common.collect.Lists;
 import org.huajistudio.chessmaster.api.Board;

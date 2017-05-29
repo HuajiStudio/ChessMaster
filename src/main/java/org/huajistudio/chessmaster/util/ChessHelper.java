@@ -1,4 +1,4 @@
-package org.huajistudio.chessmaster.utils;
+package org.huajistudio.chessmaster.util;
 
 import org.huajistudio.chessmaster.api.*;
 import org.huajistudio.chessmaster.api.math.ChessVector;

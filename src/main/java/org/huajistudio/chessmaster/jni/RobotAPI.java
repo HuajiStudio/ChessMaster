@@ -4,7 +4,7 @@ import com.sun.jna.Library;
 import com.sun.jna.Native;
 
 public interface RobotAPI extends Library {
-	RobotAPI INSTANCE = Native.loadLibrary(RobotAPI.class);
+	RobotAPI INSTANCE = Native.loadLibrary("robot", RobotAPI.class);
 
 	/**
 	 * Calculate a bot-controlled move.

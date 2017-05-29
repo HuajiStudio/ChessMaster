@@ -5,7 +5,7 @@ import io.reactivex.Observable;
 import org.huajistudio.chessmaster.ChessMaster;
 import org.huajistudio.chessmaster.api.event.chess.ChessCreateEvent;
 import org.huajistudio.chessmaster.api.event.chess.ChessMoveEvent;
-import org.huajistudio.chessmaster.utils.ChessHelper;
+import org.huajistudio.chessmaster.util.ChessHelper;
 
 import java.util.Iterator;
 import java.util.Map;

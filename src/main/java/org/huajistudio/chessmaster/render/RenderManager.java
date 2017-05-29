@@ -138,6 +138,14 @@ public class RenderManager {
 		return height;
 	}
 
+	public int getRenderer() {
+		return renderer;
+	}
+
+	public int getPciId() {
+		return pciId;
+	}
+
 	private void frame(float time, float frameTime) {
 		bgfx_dbg_text_printf(0, 1, 0x0f, String.format("Frame: %7.3f[ms]", frameTime));
 	}
