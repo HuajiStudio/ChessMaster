@@ -1,4 +1,4 @@
-package org.huajistudio.chessmaster.render;
+package org.huajistudio.chessmaster.client.render;
 
 import org.huajistudio.chessmaster.ChessMaster;
 

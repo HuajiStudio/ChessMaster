@@ -1,4 +1,4 @@
-package org.huajistudio.chessmaster.render;
+package org.huajistudio.chessmaster.client.render;
 
 public class Vector2fColor {
 	private float x, y;

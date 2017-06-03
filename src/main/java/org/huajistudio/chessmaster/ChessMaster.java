@@ -2,7 +2,7 @@ package org.huajistudio.chessmaster;
 
 import javafx.application.Application;
 import net.hakugyokurou.aeb.EventBus;
-import org.huajistudio.chessmaster.render.RenderManager;
+import org.huajistudio.chessmaster.client.render.RenderManager;
 import org.huajistudio.chessmaster.selector.RenderEngineSelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

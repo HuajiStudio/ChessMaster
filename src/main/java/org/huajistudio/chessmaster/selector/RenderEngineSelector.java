@@ -10,7 +10,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import org.huajistudio.chessmaster.ChessMaster;
 import org.huajistudio.chessmaster.api.render.Renderer;
-import org.huajistudio.chessmaster.render.BGFXRenderer;
+import org.huajistudio.chessmaster.client.render.bgfx.BGFXRenderer;
+import org.huajistudio.chessmaster.client.render.opengl.OpenGLRenderer;
 import org.huajistudio.chessmaster.util.i18n.I18n;
 import ro.fortsoft.pf4j.PluginWrapper;
 
@@ -43,7 +44,7 @@ public class RenderEngineSelector extends Application {
 		pane.setHgap(3);
 		pane.addRow(1, new Label("Chess Master"));
 		ComboBox<RenderWrapper> renderCombo = new ComboBox<>();
-		renderCombo.getItems().addAll(new RenderWrapper(new BGFXRenderer()));
+		renderCombo.getItems().addAll(new RenderWrapper(new BGFXRenderer()), new RenderWrapper(new OpenGLRenderer()));
 		ChessMaster.getPluginManager().getExtensions(Renderer.class).stream().map(RenderWrapper::new).forEach(renderCombo.getItems()::add);
 		pane.addRow(2, new Label("Select a renderer:"), renderCombo);
 		Button button = new Button("Start!");

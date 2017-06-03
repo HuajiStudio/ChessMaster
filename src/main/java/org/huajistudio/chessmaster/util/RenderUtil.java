@@ -12,6 +12,18 @@ import java.nio.ByteBuffer;
 import static org.lwjgl.bgfx.BGFX.*;
 
 public interface RenderUtil {
+	static float[] toFloatArray(Tuple2f tuple) {
+		return new float[]{tuple.getX(), tuple.getY()};
+	}
+
+	static float[] toFloatArray(Tuple3f tuple) {
+		return new float[]{tuple.getX(), tuple.getY(), tuple.getZ()};
+	}
+
+	static float[] toFloatArray(Tuple4f tuple4f) {
+		return new float[]{tuple4f.getX(), tuple4f.getY(), tuple4f.getZ(), tuple4f.getW()};
+	}
+
 	static BGFXVertexDecl createVertexDecl(boolean withNormals, boolean withColor, int numUVs) {
 
 		BGFXVertexDecl decl = BGFXVertexDecl.calloc();
