@@ -1,11 +1,14 @@
 package org.huajistudio.chessmaster.client.render;
 
+import org.huajistudio.chessmaster.file.ResourceLocation;
+
 import javax.vecmath.Vector2f;
 
 /**
  * A 2D-vertex based rectangle storage.
  */
 public class Rectangle {
+	private ResourceLocation textureLocation;
 	private Vector2f start;
 	private float width;
 	private float height;
@@ -20,6 +23,14 @@ public class Rectangle {
 		this.start = new Vector2f(x, y);
 		this.width = width;
 		this.height = height;
+	}
+
+	public ResourceLocation getTextureLocation() {
+		return textureLocation;
+	}
+
+	public void setTextureLocation(ResourceLocation textureLocation) {
+		this.textureLocation = textureLocation;
 	}
 
 	public Vector2f getStart() {
