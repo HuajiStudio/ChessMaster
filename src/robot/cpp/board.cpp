@@ -1,6 +1,8 @@
 #ifndef BOARD
 #define BOARD
 
+#include <cstring>
+
 #include <unordered_map>
 
 enum chess_type {
@@ -21,8 +23,15 @@ struct pos {
 	pos(int x, int y) : x(x), y(y) {}
 
 	bool operator==(const pos& x) const
-	{ return !memcpy(this, &x, sizeof(x)); }
-}
+	{ return !memcmp(this, &x, sizeof(x)); }
+};
+
+template <>
+struct std::hash<pos> : public unary_function<pos, size_t> {
+	size_t operator()(const pos& x) const {
+		return x.x * 8 + x.y;
+	}
+};
 
 class chess {
 private:
@@ -37,11 +46,11 @@ public:
 
 	chess(const pos& at, chess_type type, bool side, bool moved) :
 	      at(at), type(type), side(side), moved(moved) {}
-}
+};
 
 class board {
 private:
-	unordered_map<pos, chess> chess_map;
+	std::unordered_map<pos, chess> chess_map;
 
 public:
 };
