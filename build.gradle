@@ -3,7 +3,6 @@ group 'org.huajistudio'
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
-apply plugin: 'cpp'
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
@@ -29,28 +28,6 @@ project.ext.lwjglVersion = "3.1.2"
 
 repositories {
 	jcenter()
-}
-
-model { 
-    components {
-        robot(NativeLibrarySpec)   
-    }
-}
-
-distZip {
-	doFirst {
-		tasks.robotSharedLibrary.execute()
-	}
-}
-
-distributions {
-	main {
-		contents {
-			from("build/libs/robot/shared/") {
-				into 'bin'
-			}
-		}
-	}
 }
 
 dependencies {
